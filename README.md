@@ -1,6 +1,6 @@
 # Encryption Package
 
-The **Encryption** package is a Composer package that provides functionality for encrypting and decrypting data using the [Defuse PHP encryption library](https://github.com/defuse/php-encryption). This package simplifies the process of handling encryption keys and allows you to perform encryption and decryption operations on files and data with ease.
+The **Encryption** package is a simple Composer package that provides functionality for encrypting and decrypting data using the [Defuse PHP encryption library](https://github.com/defuse/php-encryption). This package simplifies the process of handling encryption keys and allows you to perform encryption and decryption operations on files and data with ease.
 
 ## Installation
 
