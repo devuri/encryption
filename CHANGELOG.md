@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.0](https://github.com/devuri/encryption/compare/v0.1.3...v0.2.0) (2023-10-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* `.secret.txt` can now just be `.secret`
+
+### Features
+
+* `.secret.txt` can now just be `.secret` ([b4c3c34](https://github.com/devuri/encryption/commit/b4c3c343eed9c0a588f1a030a2bd4630bb567d84))
+
+
+### Miscellaneous Chores
+
+* build ([8d186b9](https://github.com/devuri/encryption/commit/8d186b998a59aa283892a761faa842bc997e4fef))
+
 ## [0.1.3](https://github.com/devuri/encryption/compare/v0.1.2...v0.1.3) (2023-07-29)
 
 
