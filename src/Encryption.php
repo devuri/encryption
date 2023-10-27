@@ -32,7 +32,9 @@ class Encryption
         $this->root_dir_path = $root_dir_path;
         $this->filesystem    = $filesystem;
 
-        if ( ! $secret_key_path && \defined( 'WEBAPP_ENCRYPTION_KEY' ) ) {
+		if ( file_exists( $this->root_dir_path . "/.$keyid" ) && is_null( $secret_key_path ) ) {
+			$this->AsciiKeyfile = $this->root_dir_path . "/.$keyid";
+		} elseif ( ! $secret_key_path && \defined( 'WEBAPP_ENCRYPTION_KEY' ) ) {
             $this->AsciiKeyfile = WEBAPP_ENCRYPTION_KEY;
         } else {
             $this->AsciiKeyfile = $secret_key_path . "/.$keyid.txt";
