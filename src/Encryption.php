@@ -7,7 +7,6 @@ use Defuse\Crypto\File;
 use Defuse\Crypto\Key;
 use Exception;
 use InvalidArgumentException;
-use Symfony\Component\Filesystem\Filesystem;
 
 class Encryption
 {
@@ -27,7 +26,7 @@ class Encryption
      *
      * @throws InvalidArgumentException If the secret key file is not found.
      */
-    public function __construct( string $root_dir_path, Filesystem $filesystem, ?string $secret_key_path = null, $keyid = 'secret' )
+    public function __construct( string $root_dir_path, ?FilesystemInterface $filesystem = null, ?string $secret_key_path = null, $keyid = 'secret' )
     {
         $this->root_dir_path = $root_dir_path;
         $this->filesystem    = $filesystem;
