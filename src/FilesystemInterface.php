@@ -7,16 +7,14 @@ namespace Urisoft;
  */
 interface FilesystemInterface
 {
-	/**
+    /**
      * Atomically dumps content into a file.
      *
-     * @param string|resource $content The data to write into the file
+     * @param resource|string $content The data to write into the file
      *
-     * @return void
-     *
-     * @throws IOException if the file cannot be written to
+     * @return mixed
      *
      * @see https://github.com/symfony/filesystem/blob/6.3/Filesystem.php#L659
      */
-    public function dumpFile(string $filename, $content);
+    public function dumpFile( string $filename, $content );
 }

@@ -4,8 +4,8 @@ namespace Tests\Unit\App\Console;
 
 use Defuse\Crypto\Crypto;
 use PHPUnit\Framework\TestCase;
-use Urisoft\Filesystem;
 use Urisoft\Encryption;
+use Urisoft\Filesystem;
 
 /**
  * @internal
