@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0](https://github.com/devuri/encryption/compare/v0.2.0...v0.3.0) (2023-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove dependency on `Symfony Filesystem`  use `FilesystemInterface`
+
+### Bug Fixes
+
+* remove dependency on `Symfony Filesystem`  use `FilesystemInterface` ([1682636](https://github.com/devuri/encryption/commit/16826367351ef7a3538fa6efd4a0522e401c25cb))
+
+
+### Miscellaneous Chores
+
+* build ([e5398a9](https://github.com/devuri/encryption/commit/e5398a9ff909665b52ab8f1ec5d00e71706caa49))
+
 ## [0.2.0](https://github.com/devuri/encryption/compare/v0.1.3...v0.2.0) (2023-10-27)
 
 
