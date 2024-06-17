@@ -24,7 +24,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "defuse/php-encryption": "^v2.0",
-        "symfony/filesystem": "5.4.38"
+        "symfony/filesystem": "7.1.1"
     },
     "autoload": {
         "psr-4": {
