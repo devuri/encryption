@@ -1,6 +1,11 @@
 # Encryption Package
 
-The **Encryption** package is a simple Composer package that provides functionality for encrypting and decrypting data using the [Defuse PHP encryption library](https://github.com/defuse/php-encryption). This package simplifies the process of handling encryption keys and allows you to perform encryption and decryption operations on files and data with ease.
+The **Encryption** package is a simple Composer package that provides functionality for encrypting and decrypting data using the [Defuse PHP encryption library](https://github.com/defuse/php-encryption) or encrypting and decrypting data using OpenSSL. This package simplifies the process of handling encryption keys and allows you to perform encryption and decryption operations on files and data with ease.
+
+## Requirements
+
+- PHP 7.4 or higher.
+- OpenSSL PHP Extension enabled.
 
 ## Installation
 
@@ -33,11 +38,11 @@ To use the Encryption package, you first need to set up the `Encryption` class b
 
 ```php
 use Urisoft\Encryption;
-use Symfony\Component\Filesystem\Filesystem;
+use Urisoft\Filesystem;
 
 // Replace these with the appropriate values for your application
 $rootDirPath = __DIR__;
-$filesystem = new Filesystem();
+$filesystem = new Filesystem(); // Optional, required only for encrypt_envfile()
 $secretKeyPath = '/path/to/secret_key_directory';
 $keyId = 'secret'; // Optional, default is 'secret'
 
@@ -47,6 +52,8 @@ try {
     // Handle exception if the secret key file is not found
 }
 ```
+
+> **Note**: The `$filesystem` parameter is optional. Pass `null` if you don't need the `encrypt_envfile()` method. You can also provide your own implementation of `FilesystemInterface`.
 
 ### Encrypting and Decrypting Files
 
@@ -118,6 +125,54 @@ The encrypted contents will be saved in a file named `.env.encrypted`.
 The Encryption class expects the secret key file to be stored in ASCII format. It retrieves the encryption key from the secret key file specified during initialization. Make sure to keep the secret key file secure and protected.
 
 If you have a constant `WEBAPP_ENCRYPTION_KEY` defined, the class will use that as the encryption key. Otherwise, it will look for the secret key file in the provided directory with the default filename identifier 'secret'. The key file should be named as '.secret.txt' by default unless you specify a different key filename identifier during initialization.
+
+
+# OpenSSLEncrypt
+
+The `OpenSSLEncrypt` class, provides a simple interface for encrypting and decrypting data using OpenSSL. It supports various cipher algorithms and output formats, such as base64 and hex.
+
+## Usage
+
+```php
+use Urisoft\OpenSSLEncrypt;
+
+$key = 'your-encryption-key'; // Replace with your secure key.
+$cipher = 'AES-128-CBC'; // Optional, default is AES-128-CBC.
+
+$encryptor = new OpenSSLEncrypt($key, $cipher);
+```
+
+If you don't specify a cipher, AES-128-CBC is used by default.
+
+### Encrypting Data
+
+```php
+$plainText = "Hello, World!";
+$outputFormat = 'base64'; // Optional, formats: base64, hex, binary. Default is base64.
+
+$encryptedText = $encryptor->encrypt($plainText, $outputFormat);
+```
+
+### Decrypting Data
+
+```php
+$inputFormat = 'base64'; // Should match the format used in encryption. Default is base64.
+
+$decryptedText = $encryptor->decrypt($encryptedText, $inputFormat);
+```
+
+## Methods
+
+- `__construct(string $key, string $cipher = 'AES-128-CBC')`: Constructor to initialize the encryption key and cipher algorithm. Throws `InvalidArgumentException` if an unsupported cipher is provided.
+- `encrypt(string $data, string $outputFormat = 'base64')`: Encrypts the provided data and returns it in the specified format. Throws `RuntimeException` if encryption fails.
+- `decrypt(string $data, string $inputFormat = 'base64')`: Decrypts the provided data assuming it's in the specified format. Throws `RuntimeException` if decryption fails or input format is invalid.
+
+## Notes
+
+- It is crucial to use a secure and unique key for encryption.
+- Cipher names are case-insensitive (e.g., `AES-128-CBC` and `aes-128-cbc` are both valid).
+- The choice of cipher algorithm can be modified based on your requirements. Use `openssl_get_cipher_methods()` to list available ciphers.
+- The class automatically handles format conversions for input and output.
 
 ## License
 
